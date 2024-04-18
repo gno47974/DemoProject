@@ -187,33 +187,66 @@ import SwiftUI
 //    }
 //}
 
+//struct ContentView: View {
+//    @State var myLayout: AnyLayout = AnyLayout(VStackLayout())
+//    @State var toggleValue: Bool = false
+//    
+//    var body: some View {
+//        VStack {
+//            Toggle("Toggle:", isOn: $toggleValue)
+//            myLayout {
+//                Image(systemName: "goforward.10")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                Image(systemName: "goforward.15")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//            }
+//            
+//            HStack {
+//                Button(action: {
+//                    myLayout = AnyLayout(HStackLayout())
+//                }) {
+//                    Text("HStack")
+//                }
+//                Button(action: {
+//                    myLayout = AnyLayout(VStackLayout())
+//                }) {
+//                    Text("VStack")
+//                }
+//            }
+//        }
+//    }
+//}
+
+//struct ContentView: View {
+//    var body: some View {
+//        HStack {
+//            Image(systemName: "airplane")
+//            Text("Flight times:")
+//            Text("London")
+//        }
+//        .font(.largeTitle)
+//        .frame(width: 300)
+//        //너비가 충분치 않을 때 줄바꿈이 일어난다
+//        .lineLimit(1...4)
+//        //글씨를 자를지언정 줄바꿈을 이렇게 하겠다!
+//        .transaction { transaction in
+//            transaction.disablesAnimations = true
+//        }
+//    }
+//}
+
 struct ContentView: View {
-    @State var myLayout: AnyLayout = AnyLayout(VStackLayout())
-    
     var body: some View {
-        VStack {
-            myLayout {
-                Image(systemName: "goforward.10")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                Image(systemName: "goforward.15")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            
-            HStack {
-                Button(action: {
-                    myLayout = AnyLayout(HStackLayout())
-                }) {
-                    Text("HStack")
-                }
-                Button(action: {
-                    myLayout = AnyLayout(VStackLayout())
-                }) {
-                    Text("VStack")
-                }
-            }
+        HStack {
+            Text("Hello World, how are you?")
+                .font(.largeTitle)
+                .border(Color.black)
+//            .frame(minWidth: 100, maxWidth: 300, minHeight: 100, maxHeight: 100, alignment: center)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
