@@ -99,16 +99,66 @@ import SwiftUI
 
 //여기서부터 240418 목 수업~
 
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Button(action: buttonPressed) {
+//                Text("Click Me")
+//            }
+//        }
+//    }
+//    func buttonPressed() {
+//        print("Click!")
+//    }
+//}
+
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Button("Click Me") {
+//                print("Click!")
+//            }
+//        }
+//    }
+//}
+
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            Button("Click Me", systemImage: "tortoise") {
+//                print("Click!")
+//            }
+//        }
+//    }
+//}
+
+struct MyVStack<Content: View>: View {
+    let content: () -> Content
+    
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            content()
+        }
+        .font(.largeTitle)
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Button(action: buttonPressed) {
-                Text("Click Me")
+        MyVStack {
+            Text("Text Item 1")
+            Text("Text Item 2")
+            Text("Text Item 3")
+            HStack {
+                Image(systemName: "star.fill")
+                Image(systemName: "star.fill")
+                Image(systemName: "star")
             }
         }
-    }
-    func buttonPressed() {
-        print("Click!")
     }
 }
 
