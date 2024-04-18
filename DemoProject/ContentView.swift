@@ -237,15 +237,33 @@ import SwiftUI
 //    }
 //}
 
+//struct ContentView: View {
+//    var body: some View {
+//        VStack (alignment: .center) {
+//        GeometryReader { geometry in
+//                Text("Hello World, how are you?")
+//                    .font(.largeTitle)
+//                    .border(Color.black)
+//                    .frame(minWidth: 0, maxWidth: geometry.size.width / 2, minHeight: 0, maxHeight: .infinity, alignment: .center)
+//            }
+//        }
+//    }
+//}
+
+//상태 프로퍼티
 struct ContentView: View {
+    @State private var wifiEnabled = true
+    @State private var userName = ""
+    let textLimit = 20
     var body: some View {
-        VStack (alignment: .center) {
-        GeometryReader { geometry in
-                Text("Hello World, how are you?")
-                    .font(.largeTitle)
-                    .border(Color.black)
-                    .frame(minWidth: 0, maxWidth: geometry.size.width / 2, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        VStack {
+            Toggle(isOn: $wifiEnabled) {
+                Text("Enable Wi-Fi")
             }
+            TextField("Enter user name", text: $userName)
+            Text(userName .prefix(textLimit))
+            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
+                .font(.largeTitle)
         }
     }
 }
