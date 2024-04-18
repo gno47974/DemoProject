@@ -132,31 +132,86 @@ import SwiftUI
 //    }
 //}
 
-struct MyVStack<Content: View>: View {
-    let content: () -> Content
-    
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
-    
-    var body: some View {
-        VStack(spacing: 10) {
-            content()
-        }
-        .font(.largeTitle)
-    }
-}
+//struct MyVStack<Content: View>: View {
+//    let content: () -> Content
+//    
+//    init(@ViewBuilder content: @escaping () -> Content) {
+//        self.content = content
+//    }
+//    
+//    var body: some View {
+//        VStack(spacing: 10) {
+//            content()
+//        }
+//        .font(.largeTitle)
+//    }
+//}
+//
+//struct ContentView: View {
+//    var body: some View {
+//        MyVStack {
+//            Text("Text Item 1")
+//            Text("Text Item 2")
+//            Text("Text Item 3")
+//            HStack {
+//                Image(systemName: "star.fill")
+//                Image(systemName: "star.fill")
+//                Image(systemName: "star")
+//            }
+//        }
+//    }
+//}
+
+//struct ContentView: View {
+//    var body: some View {
+//        VStack {
+//            HStack {
+//                Image(systemName: "goforward.10")
+//                Image(systemName: "goforward.15")
+//                Image(systemName: "goforward.30")
+//            }
+//            .padding()
+//            
+//            HStack(alignment: .top) {
+//                Text("Q1 Sales")
+//                    .font(.headline)
+//                Spacer()
+//                VStack(alignment: .leading) {
+//                    Text("January")
+//                    Text("February")
+//                    Text("March")
+//                }
+//                Spacer()
+//            }
+//        }
+//    }
+//}
 
 struct ContentView: View {
+    @State var myLayout: AnyLayout = AnyLayout(VStackLayout())
+    
     var body: some View {
-        MyVStack {
-            Text("Text Item 1")
-            Text("Text Item 2")
-            Text("Text Item 3")
+        VStack {
+            myLayout {
+                Image(systemName: "goforward.10")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Image(systemName: "goforward.15")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            
             HStack {
-                Image(systemName: "star.fill")
-                Image(systemName: "star.fill")
-                Image(systemName: "star")
+                Button(action: {
+                    myLayout = AnyLayout(HStackLayout())
+                }) {
+                    Text("HStack")
+                }
+                Button(action: {
+                    myLayout = AnyLayout(VStackLayout())
+                }) {
+                    Text("VStack")
+                }
             }
         }
     }
