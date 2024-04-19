@@ -251,22 +251,46 @@ import SwiftUI
 //}
 
 //상태 프로퍼티
+//struct ContentView: View {
+//    @State private var wifiEnabled = true
+//    @State private var userName = ""
+//    let textLimit = 20
+//    var body: some View {
+//        VStack {
+//            Toggle(isOn: $wifiEnabled) {
+//                Text("Enable Wi-Fi")
+//            }
+//            TextField("Enter user name", text: $userName)
+//            Text(userName .prefix(textLimit))
+//            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
+//                .font(.largeTitle)
+//        }
+//    }
+//}
+
+class DemoData: ObservableObject {
+    @Published var userCount = 0
+    @Published var currentUser = ""
+    
+    init() {
+        updateData()
+    }
+    
+    func updateData() {
+        
+    }
+}
+
 struct ContentView: View {
-    @State private var wifiEnabled = true
-    @State private var userName = ""
-    let textLimit = 20
+    @StateObject var demoData: DemoData = DemoData()
+    
     var body: some View {
         VStack {
-            Toggle(isOn: $wifiEnabled) {
-                Text("Enable Wi-Fi")
-            }
-            TextField("Enter user name", text: $userName)
-            Text(userName .prefix(textLimit))
-            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
-                .font(.largeTitle)
+            Text("\(demoData.currentUser), you are user number \(demoData.userCount)")
         }
     }
 }
+
 
 #Preview {
     ContentView()
