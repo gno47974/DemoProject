@@ -271,19 +271,19 @@ import SwiftUI
 //class DemoData: ObservableObject {
 //    @Published var userCount = 0
 //    @Published var currentUser = ""
-//    
+//
 //    init() {
 //        updateData()
 //    }
-//    
+//
 //    func updateData() {
-//        
+//
 //    }
 //}
 //
 //struct ContentView: View {
 //    @StateObject var demoData: DemoData = DemoData()
-//    
+//
 //    var body: some View {
 //        VStack {
 //            Text("\(demoData.currentUser), you are user number \(demoData.userCount)")
@@ -291,29 +291,56 @@ import SwiftUI
 //    }
 //}
 
-class DemoData: ObservableObject {
-    @Published var userCount = 0
-    
-    func increment() {
-        userCount += 1
-    }
-}
+//class DemoData: ObservableObject {
+//    @Published var userCount = 0
+//
+//    func increment() {
+//        userCount += 1
+//    }
+//}
+//
+//struct ContentView: View {
+//    @StateObject var demoData: DemoData = DemoData()
+//
+//    var body: some View {
+//        VStack {
+//            Text("you are user number \(demoData.userCount)")
+//
+//            Button(action: {
+//                demoData.increment()
+//            }) {
+//                Text("Increment")
+//                    .font(.largeTitle)
+//                    .tint(.pink)
+//            }
+//        }
+//    }
+//}
 
+//async , await
 struct ContentView: View {
-    @StateObject var demoData: DemoData = DemoData()
     
     var body: some View {
         VStack {
-            Text("you are user number \(demoData.userCount)")
-            
             Button(action: {
-                demoData.increment()
+                doSomething()
             }) {
-                Text("Increment")
-                    .font(.largeTitle)
-                    .tint(.pink)
+                Text("Do something")
             }
         }
+    }
+    
+    func doSomething() {
+        print("Start \(Date())")
+        Task {
+            await takesTooLong()
+        }
+        print("End \(Date())")
+    }
+    
+    func takesTooLong() async {
+        sleep(5)
+        print("Async tas completed at \(Date())")
     }
 }
 
