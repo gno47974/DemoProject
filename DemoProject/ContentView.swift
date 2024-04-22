@@ -317,7 +317,34 @@ import SwiftUI
 //    }
 //}
 
-//async , await
+//async await
+//struct ContentView: View {
+//    
+//    var body: some View {
+//        VStack {
+//            Button(action: {
+//                doSomething()
+//            }) {
+//                Text("Do something")
+//            }
+//        }
+//    }
+//    
+//    func doSomething() {
+//        print("Start \(Date())")
+//        Task {
+//            await takesTooLong()
+//        }
+//        print("End \(Date())")
+//    }
+//    
+//    func takesTooLong() async {
+//        sleep(5)
+//        print("Async task completed at \(Date())")
+//    }
+//}
+
+//async await
 struct ContentView: View {
     
     var body: some View {
@@ -333,17 +360,18 @@ struct ContentView: View {
     func doSomething() {
         print("Start \(Date())")
         Task {
-            await takesTooLong()
+            async let result = takesTooLong()
+            print("Date result: \(await result)")
         }
         print("End \(Date())")
     }
     
-    func takesTooLong() async {
+    func takesTooLong() async -> Date {
         sleep(5)
-        print("Async tas completed at \(Date())")
+        print("Async task completed at \(Date())")
+        return Date()
     }
 }
-
 #Preview {
     ContentView()
 }
